@@ -50,12 +50,9 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 # KaapstadBrauhaus
 
-This file was edited. 
-
-
-
-
-wiuerfnieuwrnfiunwer
-does werner have pull accesss
-branch added
-yesss
+HOW TO MERGE SUB BRANCH WITH MAIN BRANCH
+Switch to main branch - git checkout main
+Pull the latest changes - git pull origin main
+merge the sub branch into the main branch - git merge sub-branch-name
+complete merge - git commit -m "message"
+Push the updated main branch to the remote repo - git push origin main
