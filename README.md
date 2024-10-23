@@ -56,3 +56,7 @@ Pull the latest changes - git pull origin main
 merge the sub branch into the main branch - git merge sub-branch-name
 complete merge - git commit -m "message"
 Push the updated main branch to the remote repo - git push origin main
+
+TO ADD A BRANCH
+git checkout -b branch-name
+
