@@ -18,6 +18,9 @@ You can start developing by editing the files inside the **app** directory. This
 
 
 HOW TO MERGE SUB BRANCH WITH MAIN BRANCH
+
+*Important - You first have to commit and push the changes made in your branch before you can merge it with the main branch*
+
 Switch to main branch - git checkout main
 Pull the latest changes - git pull origin main
 merge the sub branch into the main branch - git merge sub-branch-name
