@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 60,
-    backgroundColor: '#6200EE',
+    backgroundColor: '#C87A44',
     justifyContent: 'center',
     alignItems: 'center',
   },

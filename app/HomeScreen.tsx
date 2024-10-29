@@ -1,6 +1,6 @@
 // HomeScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen() {
   return (
@@ -24,6 +24,11 @@ export default function HomeScreen() {
         <Text style={styles.sectionTitle}>Friends Center</Text>
         <Text style={styles.sectionText}>Data of friends Display</Text>
       </View>
+
+      {/* Simplified Book Now Button */}
+      <TouchableOpacity style={styles.bookButton}>
+        <Text style={styles.bookButtonText}>BOOK NOW</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     height: 80,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#C87A44',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
@@ -64,5 +69,17 @@ const styles = StyleSheet.create({
   sectionText: {
     fontSize: 16,
     color: '#444444',
+  },
+  bookButton: {
+    backgroundColor: '#C87A44',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  bookButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
