@@ -37,3 +37,11 @@ git branch -a (checks all branches)
 git checkout branch-name (switches to branch)
 
 
+MYSQL DATABASE CONNECTION
+Installed Extention - SQLTools (Yellow icon)
+Username - admin
+Database - kaapstadbrauhaus
+for password and endpoint check teams
+
+
+
