@@ -6,12 +6,14 @@ import 'react-native-reanimated';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import HomeScreen from './HomeScreen'; // Ensure this path is correct
-import MyBookings from './MyBookings'; // Ensure this path is correct
-import Specials from './Specials'; // New import
-import Events from './Events'; // New import
-import SeatingPlan from './SeatingPlan'; // New import
 import { useColorScheme } from '@/hooks/useColorScheme';
+//imported screens and new screens should be added aswell
+import HomeScreen from './HomeScreen'; 
+import MyBookings from './MyBookings';
+import Specials from './Specials';
+import Events from './Events';
+import SeatingPlan from './SeatingPlan';
+
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
