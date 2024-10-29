@@ -1,0 +1,56 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "kaapstatbrauhaus.cn84caiiuzgu.af-south-1.rds.amazonaws.com  ",
+            "port": 3306,
+            "driver": "MySQL",
+            "username": "admin",
+            "database": "kaapstadbrauhaus",
+            "name": "KaapstadBrauhuasDB"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "kaapstatbrauhaus.cn84caiiuzgu.af-south-1.rds.amazonaws.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "database": "kaapstatbrauhaus",
+            "username": "admin",
+            "name": "KaapstadBrauhausDB"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "kaapstadbrauhaus.cn84caiiuzgu.af-south-1.rds.amazonaws.com  ",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "kaapstadbrauhaus",
+            "database": "kaapstadbrauhaus",
+            "username": "admin"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "kaapstadbrauhaus.cn84caiiuzgu.af-south-1.rds.amazonaws.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "kaapstadbrauhaus",
+            "database": "kaapstadbrauhaus",
+            "username": "admin"
+        }
+    ]
+}
