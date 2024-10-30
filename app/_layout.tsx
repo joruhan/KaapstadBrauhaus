@@ -11,6 +11,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import HomeScreen from './HomeScreen'; 
 import BookNow from './BookNow';
 import Profile from './Profile';
+import { Ionicons } from '@expo/vector-icons';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -50,23 +51,44 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <SafeAreaView style={styles.container}>
-        <Tab.Navigator initialRouteName="HomeScreen">
-          {/* Drawer Screen for Home */}
+        <Tab.Navigator 
+          initialRouteName="HomeScreen"
+          screenOptions={{
+            tabBarActiveTintColor: '#C87A44',
+            tabBarInactiveTintColor: 'gray',
+          }}>
           <Tab.Screen 
             name="HomeScreen" 
             component={HomeScreen} 
-            options={{ header: (props) => <Header {...props} /> }} 
+            options={{ 
+              header: (props) => <Header {...props} />,
+              tabBarLabel: 'Home',
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="home" size={size} color={color} />
+              ),
+            }} 
           />
-          {/* Drawer Screen for My Bookings */}
           <Tab.Screen 
             name="BookNow" 
             component={BookNow} 
-            options={{ header: (props) => <Header {...props} /> }} 
+            options={{ 
+              header: (props) => <Header {...props} />,
+              tabBarLabel: 'Book',
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="calendar" size={size} color={color} />
+              ),
+            }} 
           />
           <Tab.Screen 
             name="Profile" 
             component={Profile} 
-            options={{ header: (props) => <Header {...props} /> }} 
+            options={{ 
+              header: (props) => <Header {...props} />,
+              tabBarLabel: 'Profile',
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="person" size={size} color={color} />
+              ),
+            }} 
           />
         </Tab.Navigator>
       </SafeAreaView>
