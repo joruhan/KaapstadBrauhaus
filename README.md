@@ -43,5 +43,8 @@ Username - admin
 Database - kaapstadbrauhaus
 for password and endpoint check teams
 
+CONNECT TO DATABASE
+cd into the server folder in kaapstadbrauhaus. check if npm is installed 'npm install' and then run 'node index.js' to start the server that connects to the database. 
+
 
 
