@@ -7,7 +7,13 @@ const Events = () => {
       bandName: "Millennium",
       genre: "Afrikaans Rock Band",
       date: "29 November 2024",
-      time: "20:00 till Late!",
+      time: "20:00",
+    },
+    {
+      bandName: "Around the World",
+      genre: "World Music Band",
+      date: "30 November 2024",
+      time: "20:00",
     },
     // More events can be added here in the same format
   ];
