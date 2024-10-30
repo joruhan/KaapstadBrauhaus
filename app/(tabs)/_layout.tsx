@@ -10,10 +10,17 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      screenOptions={{
+      screenOptions={({ route }) => ({
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-      }}>
+        tabBarLabel: 'Custom Label',
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: '#ffffff',
+          height: 60,
+          display: route.name === 'ScreenToHideTabBar' ? 'none' : 'flex',
+        },
+      })}>
       <Tabs.Screen
         name="index"
         options={{

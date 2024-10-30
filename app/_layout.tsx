@@ -3,22 +3,19 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useColorScheme } from '@/hooks/useColorScheme';
 //imported screens and new screens should be added aswell
 import HomeScreen from './HomeScreen'; 
-import MyBookings from './MyBookings';
-import Specials from './Specials';
-import Events from './Events';
-import SeatingPlan from './SeatingPlan';
-
+import BookNow from './BookNow';
+import Profile from './Profile';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 // Define type for Header props
 type HeaderProps = {
@@ -53,38 +50,25 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <SafeAreaView style={styles.container}>
-        <Drawer.Navigator initialRouteName="HomeScreen">
+        <Tab.Navigator initialRouteName="HomeScreen">
           {/* Drawer Screen for Home */}
-          <Drawer.Screen 
+          <Tab.Screen 
             name="HomeScreen" 
             component={HomeScreen} 
             options={{ header: (props) => <Header {...props} /> }} 
           />
           {/* Drawer Screen for My Bookings */}
-          <Drawer.Screen 
-            name="MyBookings" 
-            component={MyBookings} 
+          <Tab.Screen 
+            name="BookNow" 
+            component={BookNow} 
             options={{ header: (props) => <Header {...props} /> }} 
           />
-          {/* Drawer Screen for Specials */}
-          <Drawer.Screen 
-            name="Specials" 
-            component={Specials} 
+          <Tab.Screen 
+            name="Profile" 
+            component={Profile} 
             options={{ header: (props) => <Header {...props} /> }} 
           />
-          {/* Drawer Screen for Events */}
-          <Drawer.Screen 
-            name="Events" 
-            component={Events} 
-            options={{ header: (props) => <Header {...props} /> }} 
-          />
-          {/* Drawer Screen for Seating Plan */}
-          <Drawer.Screen 
-            name="SeatingPlan" 
-            component={SeatingPlan} 
-            options={{ header: (props) => <Header {...props} /> }} 
-          />
-        </Drawer.Navigator>
+        </Tab.Navigator>
       </SafeAreaView>
     </ThemeProvider>
   );
