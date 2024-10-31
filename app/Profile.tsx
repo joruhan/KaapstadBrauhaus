@@ -1,48 +1,70 @@
-// LoginScreen.tsx
+// ProfileScreen.tsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import axios from 'axios';
+import { View, Text, Modal, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export default function ProfileScreen() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [activeScreen, setActiveScreen] = useState<'login' | 'register' | null>(null);
 
-  const handleLogin = () => {
-    // Send login credentials to the backend server
-    axios.post('http://localhost:3000/login', {
-      username,
-      password,
-    })
-    .then(response => {
-      // Handle successful login
-      console.log(response.data); // Adjust this based on server response
-      alert(`Logged in as ${username}`);
-    })
-    .catch(error => {
-      // Handle login error
-      console.error(error);
-      alert("Login failed. Please check your credentials.");
-    });
+  const handleOpenModal = (screen: 'login' | 'register') => {
+    setActiveScreen(screen);
+    setModalVisible(true);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        placeholder="Email"
-        value={username}
-        onChangeText={setUsername}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        style={styles.input}
-      />
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Register" onPress={() => navigation.navigate('RegisterScreen')} />
+      <Text style={styles.title}>Welcome to the Brauhaus App!</Text>
+      
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => handleOpenModal('login')}
+      >
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => handleOpenModal('register')}
+      >
+        <Text style={styles.buttonText}>Register</Text>
+      </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+          setActiveScreen(null);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>
+                {activeScreen === 'login' ? 'Login' : 'Register'}
+              </Text>
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => {
+                  setModalVisible(false);
+                  setActiveScreen(null);
+                }}
+              >
+                <Text style={styles.closeButtonText}>×</Text>
+              </Pressable>
+            </View>
+            
+            {activeScreen === 'login' ? (
+              <LoginScreen onClose={() => setModalVisible(false)} />
+            ) : (
+              <RegisterScreen onClose={() => setModalVisible(false)} />
+            )}
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -52,17 +74,63 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 15,
+  button: {
+    backgroundColor: '#C87A44',
+    padding: 15,
+    borderRadius: 8,
+    width: '80%',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    width: '80%',
+    height: '80%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  closeButton: {
     padding: 10,
+  },
+  closeButtonText: {
+    fontSize: 24,
+    color: '#666',
+    fontWeight: 'bold',
   },
 });
