@@ -42,7 +42,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         style={styles.input}
       />
       <Button title="Register" onPress={handleRegister} />
-      <Button title="Back to Login" onPress={() => navigation.navigate('LoginScreen')} />
+      <Button title="Back to Login" onPress={() => navigation.navigate('Profile')} />
     </View>
   );
 }

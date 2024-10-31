@@ -1,47 +1,16 @@
-// LoginScreen.tsx
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import axios from 'axios';
+// ProfileScreen.tsx
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import LoginScreen from './screens/LoginScreen';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // Send login credentials to the backend server
-    axios.post('http://localhost:3000/login', {
-      username,
-      password,
-    })
-    .then(response => {
-      // Handle successful login
-      console.log(response.data); // Adjust this based on server response
-      alert(`Logged in as ${username}`);
-    })
-    .catch(error => {
-      // Handle login error
-      console.error(error);
-      alert("Login failed. Please check your credentials.");
-    });
-  };
+export default function ProfileScreen({ navigation }: { navigation: any }) {
+  // Log the current navigation state
+  console.log(navigation.getState());
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        placeholder="Email"
-        value={username}
-        onChangeText={setUsername}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        style={styles.input}
-      />
-      <Button title="Login" onPress={handleLogin} />
+      <Text style={styles.title}>Welcome to the Brauhaus App!</Text>
+      <Button title="Login" onPress={() => navigation.navigate('LoginScreen')} />
       <Button title="Register" onPress={() => navigation.navigate('RegisterScreen')} />
     </View>
   );
@@ -52,17 +21,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 15,
-    padding: 10,
   },
 });
