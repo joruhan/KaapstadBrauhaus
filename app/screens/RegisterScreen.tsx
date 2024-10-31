@@ -1,29 +1,82 @@
 // RegisterScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import axios from 'axios';
 
 interface RegisterScreenProps {
   onClose?: () => void;
 }
 
 export default function RegisterScreen({ onClose }: RegisterScreenProps) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [date_of_birth, setDateOfBirth] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleRegister = () => {
-    // Handle registration functionality here
-    alert(`Registered as ${username}`);
+    // Basic validation
+    if (!first_name || !last_name || !email || !phone || !date_of_birth || !password) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    axios.post('http://localhost:8081/register', {
+      first_name,
+      last_name,
+      email,
+      phone,
+      date_of_birth,
+      password,
+    })
+    .then(response => {
+      console.log(response.data);
+      alert('Registration successful!');
+      if (onClose) {
+        onClose();
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Registration failed. Please try again.");
+    });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Register</Text>
       <TextInput
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="First Name"
+        value={first_name}
+        onChangeText={setFirstName}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Last Name"
+        value={last_name}
+        onChangeText={setLastName}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Email Address"
+        value={email}
+        onChangeText={setEmail}
+        style={styles.input}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      <TextInput
+        placeholder="Phone Number"
+        value={phone}
+        onChangeText={setPhone}
+        style={styles.input}
+        keyboardType="phone-pad"
+      />
+      <TextInput
+        placeholder="Date of Birth (YYYY-MM-DD)"
+        value={date_of_birth}
+        onChangeText={setDateOfBirth}
         style={styles.input}
       />
       <TextInput
@@ -31,18 +84,6 @@ export default function RegisterScreen({ onClose }: RegisterScreenProps) {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChangeText={setPhoneNumber}
-        style={styles.input}
-      />
-      <TextInput
-        placeholder="Email Address"
-        value={email}
-        onChangeText={setEmail}
         style={styles.input}
       />
       <Button title="Register" onPress={handleRegister} />
@@ -68,5 +109,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 15,
     padding: 10,
+    borderRadius: 8,
   },
 });
