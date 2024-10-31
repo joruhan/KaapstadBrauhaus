@@ -1,21 +1,38 @@
-// LoginScreen.tsx
+// app/screens/LoginScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import axios from 'axios';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
+interface LoginScreenProps {
+  onClose?: () => void;
+}
+
+export default function LoginScreen({ onClose }: LoginScreenProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Handle login functionality here
-    alert(`Logged in as ${username}`);
+    axios.post('http://localhost:3000/login', {
+      username,
+      password,
+    })
+    .then(response => {
+      console.log(response.data); 
+      alert(`Logged in as ${username}`);
+      // Optionally, navigate to a different screen after successful login
+      // navigation.navigate('HomeScreen'); // or any other screen
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Login failed. Please check your credentials.");
+    });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <TextInput
-        placeholder="Username"
+        placeholder="Email"
         value={username}
         onChangeText={setUsername}
         style={styles.input}
@@ -28,7 +45,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
         style={styles.input}
       />
       <Button title="Login" onPress={handleLogin} />
-      <Button title="Register" onPress={() => navigation.navigate('RegisterScreen')} />
+      <Button title="Back to Profile" onPress={onClose} />
     </View>
   );
 }
