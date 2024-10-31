@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Index from './Booking/index_calander';
 
-const BookNow = () => {
+const Home = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Settings Screen</Text>
+      <Text style={styles.text}>Calendar</Text>
+      <Index />
     </View>
   );
 };
@@ -20,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BookNow;
+export default Home;

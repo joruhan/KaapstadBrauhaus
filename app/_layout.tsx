@@ -40,11 +40,9 @@ export default function RootLayout() {
   }
 
   // Header Component
-  const Header = ({ navigation }: HeaderProps) => (
+  const Header = () => (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-        <Text style={styles.headerText}>Kaapstad Brauhaus</Text>
-      </TouchableOpacity>
+      <Text style={styles.headerText}>Kapstadt Brauhaus</Text>
     </View>
   );
 
@@ -61,7 +59,7 @@ export default function RootLayout() {
             name="HomeScreen" 
             component={HomeScreen} 
             options={{ 
-              header: (props) => <Header {...props} />,
+              header: () => <Header />,
               tabBarLabel: 'Home',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="home" size={size} color={color} />
@@ -72,7 +70,7 @@ export default function RootLayout() {
             name="BookNow" 
             component={BookNow} 
             options={{ 
-              header: (props) => <Header {...props} />,
+              header: () => <Header />,
               tabBarLabel: 'Book',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="calendar" size={size} color={color} />
@@ -83,7 +81,7 @@ export default function RootLayout() {
             name="Profile" 
             component={Profile} 
             options={{ 
-              header: (props) => <Header {...props} />,
+              header: () => <Header />,
               tabBarLabel: 'Profile',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="person" size={size} color={color} />

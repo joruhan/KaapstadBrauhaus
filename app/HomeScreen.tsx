@@ -3,8 +3,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Events from './Events';
 import Specials from './Specials';
+import { useNavigation } from '@react-navigation/native';
+import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 export default function HomeScreen() {
+  const navigation = useNavigation<BottomTabNavigationProp<any>>();
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
@@ -41,8 +45,11 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      {/* Book Now Button - Keep outside ScrollView to stay fixed at bottom */}
-      <TouchableOpacity style={styles.bookButton}>
+      {/* Updated Book Now Button */}
+      <TouchableOpacity 
+        style={styles.bookButton}
+        onPress={() => navigation.navigate('BookNow')}
+      >
         <Text style={styles.bookButtonText}>BOOK NOW</Text>
       </TouchableOpacity>
     </View>
