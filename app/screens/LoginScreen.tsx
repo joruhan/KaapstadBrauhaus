@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
+interface LoginScreenProps {
+  onClose?: () => void;
+}
+
+export default function LoginScreen({ onClose }: LoginScreenProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -41,7 +45,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
         style={styles.input}
       />
       <Button title="Login" onPress={handleLogin} />
-      <Button title="Back to Profile" onPress={() => navigation.navigate('Profile')} />
+      <Button title="Back to Profile" onPress={onClose} />
     </View>
   );
 }

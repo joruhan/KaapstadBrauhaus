@@ -2,7 +2,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-export default function RegisterScreen({ navigation }: { navigation: any }) {
+interface RegisterScreenProps {
+  onClose?: () => void;
+}
+
+export default function RegisterScreen({ onClose }: RegisterScreenProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -42,7 +46,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         style={styles.input}
       />
       <Button title="Register" onPress={handleRegister} />
-      <Button title="Back to Login" onPress={() => navigation.navigate('Profile')} />
+      <Button title="Back to Login" onPress={onClose} />
     </View>
   );
 }
