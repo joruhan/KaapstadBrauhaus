@@ -22,7 +22,7 @@ export default function RegisterScreen({ onClose }: RegisterScreenProps) {
       return;
     }
 
-    axios.post('http://localhost:8081/register', {
+    axios.post('http://localhost:3000/register', {
       first_name,
       last_name,
       email,
