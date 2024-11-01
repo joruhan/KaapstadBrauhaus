@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Events = () => {
+interface EventsProps {
+  preview?: boolean;
+}
+
+const Events = ({ preview }: EventsProps) => {
   const events = [
     {
       bandName: "Millennium",

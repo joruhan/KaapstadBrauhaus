@@ -29,7 +29,11 @@ const specialsList = [
   },
 ];
 
-const Specials = () => {
+interface SpecialsProps {
+  preview?: boolean;
+}
+
+const Specials = ({ preview }: SpecialsProps) => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Daily Specials</Text>
