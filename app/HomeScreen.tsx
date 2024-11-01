@@ -1,6 +1,6 @@
 // HomeScreen.tsx
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import Events from './Events';
 import Specials from './Specials';
 import { useNavigation } from '@react-navigation/native';
@@ -8,6 +8,8 @@ import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 export default function HomeScreen() {
   const navigation = useNavigation<BottomTabNavigationProp<any>>();
+  const [specialsModalVisible, setSpecialsModalVisible] = React.useState(false);
+  const [eventsModalVisible, setEventsModalVisible] = React.useState(false);
 
   return (
     <View style={styles.container}>
@@ -32,16 +34,69 @@ export default function HomeScreen() {
           <Text style={styles.sectionText}>Data of friends Display</Text>
         </View>
 
-        {/* Specials Section */}
+        {/* Specials Section - Updated */}
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Specials of the Days</Text>
-          <Specials />
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Specials of the Days</Text>
+            <TouchableOpacity onPress={() => setSpecialsModalVisible(true)}>
+              <Text style={styles.viewMoreText}>View All</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
+        {/* Specials Modal */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={specialsModalVisible}
+          onRequestClose={() => setSpecialsModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>Specials of the Days</Text>
+                <TouchableOpacity onPress={() => setSpecialsModalVisible(false)}>
+                  <Text style={styles.closeButton}>✕</Text>
+                </TouchableOpacity>
+              </View>
+              <Specials preview={false} />
+            </View>
+          </View>
+        </Modal>
 
         {/* Events Section */}
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Upcoming Events</Text>
-          <Events />
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Upcoming Events</Text>
+            <TouchableOpacity onPress={() => setEventsModalVisible(true)}>
+              <Text style={styles.viewMoreText}>View All</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Events Modal */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={eventsModalVisible}
+          onRequestClose={() => setEventsModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.modalTitle}>Upcoming Events</Text>
+                <TouchableOpacity onPress={() => setEventsModalVisible(false)}>
+                  <Text style={styles.closeButton}>✕</Text>
+                </TouchableOpacity>
+              </View>
+              <Events preview={false} />
+            </View>
+          </View>
+        </Modal>
+                {/* Seating Plan Section  */}
+                <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Seating Plan</Text>
+          <Text style={styles.sectionText}>To be announced soon.</Text>
         </View>
       </ScrollView>
 
@@ -119,5 +174,55 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     letterSpacing: 1,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  viewMoreText: {
+    color: '#C87A44',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  specialsPreview: {
+    maxHeight: 150,
+    overflow: 'hidden',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 20,
+    width: '80%',
+    height: '80%',
+    maxHeight: '80%',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#333333',
+  },
+  closeButton: {
+    fontSize: 24,
+    color: '#666666',
+    padding: 5,
+  },
+  eventsPreview: {
+    maxHeight: 150,
+    overflow: 'hidden',
   },
 });
