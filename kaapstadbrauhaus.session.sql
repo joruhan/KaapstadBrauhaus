@@ -1,2 +1,2 @@
-SELECT * FROM Users WHERE email = 'johndoe@example.com';
+SELECT * FROM Bookings;
 

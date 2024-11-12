@@ -18,13 +18,26 @@ export default function HomeScreen() {
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Dashboard</Text>
           <View style={styles.row}>
-            <View style={styles.card}><Text>Tables Available:(data)</Text></View>
-            <View style={styles.card}><Text>Restaurant Capacity:(data%)</Text></View>
-            <View style={styles.card}><Text>Vibe Check: Lively</Text></View>
+            <View style={styles.card}>
+              <Text style={styles.cardText}>Availability</Text>
+              <Text style={styles.cardDescription}>5 Tables</Text>
+            </View>
+            <View style={styles.card}>
+              <Text style={styles.cardText}>Capacity</Text>
+              <Text style={styles.cardDescription}>60%</Text>
+            </View>
+            
           </View>
+          
           <View style={styles.row}>
-            <View style={styles.card}><Text>Happy Hour Status: Cheap drinks</Text></View>
-            <View style={styles.card}><Text>Events of the Day: Band Playing</Text></View>
+            <View style={styles.card}>
+              <Text style={styles.cardText}>Happy Hour</Text>
+              <Text style={styles.cardDescription}>6-7PM</Text>
+            </View>
+            <View style={styles.card}>
+              <Text style={styles.cardText}>Current Events</Text>
+              <Text style={styles.cardDescription}>No Ongoing Events</Text>
+            </View>
           </View>
         </View>
 
@@ -149,12 +162,26 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    minHeight: 100,
+    minHeight: 150,
     backgroundColor: '#C87A44',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 12,
-    padding: 16,
+    padding: 20,
+  },
+  cardText: {
+    fontSize: 15, 
+    fontWeight: '700',
+    color: '#000',
+    textAlign: 'center', 
+    padding: 10,
+  },
+  cardDescription: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#000',
+    textAlign: 'center', 
+
   },
   sectionText: {
     fontSize: 16,
@@ -164,10 +191,12 @@ const styles = StyleSheet.create({
   bookButton: {
     backgroundColor: '#C87A44',
     padding: 20,
-    borderRadius: 12,
+    borderRadius: 10,
     alignItems: 'center',
     marginTop: 'auto',
     marginBottom: 20,
+    marginLeft: '27%',
+    width: '50%',
   },
   bookButtonText: {
     color: '#FFFFFF',
