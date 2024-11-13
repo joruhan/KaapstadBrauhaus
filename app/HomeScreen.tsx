@@ -17,14 +17,22 @@ export default function HomeScreen() {
         {/* Dashboard */}
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Dashboard</Text>
-          <View style={styles.row}>
-            <View style={styles.card}><Text>Tables Available:(data)</Text></View>
-            <View style={styles.card}><Text>Restaurant Capacity:(data%)</Text></View>
-            <View style={styles.card}><Text>Vibe Check: Lively</Text></View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.card}><Text>Happy Hour Status: Cheap drinks</Text></View>
-            <View style={styles.card}><Text>Events of the Day: Band Playing</Text></View>
+          <View style={styles.dashboardContainer}>
+            <View style={styles.dashboardTile}>
+              <Text style={styles.tileText}>Tables Available: (data)</Text>
+            </View>
+            <View style={styles.dashboardTile}>
+              <Text style={styles.tileText}>Restaurant Capacity: (data%)</Text>
+            </View>
+            <View style={styles.dashboardTile}>
+              <Text style={styles.tileText}>Vibe Check: Lively</Text>
+            </View>
+            <View style={styles.dashboardTile}>
+              <Text style={styles.tileText}>Happy Hour Status: Cheap drinks</Text>
+            </View>
+            <View style={styles.dashboardTile}>
+              <Text style={styles.tileText}>Events of the Day: Band Playing</Text>
+            </View>
           </View>
         </View>
 
@@ -100,12 +108,12 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      {/* Updated Book Now Button */}
+      {/*Book Now Button */}
       <TouchableOpacity 
         style={styles.bookButton}
         onPress={() => navigation.navigate('BookNow')}
       >
-        <Text style={styles.bookButtonText}>BOOK NOW</Text>
+        <Text style={styles.bookButtonText}>Book Now</Text>
       </TouchableOpacity>
     </View>
   );
@@ -162,15 +170,24 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   bookButton: {
-    backgroundColor: '#C87A44',
-    padding: 20,
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    backgroundColor: '#FFFFFF',
+    padding: 16,
     borderRadius: 12,
     alignItems: 'center',
-    marginTop: 'auto',
-    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    borderWidth: 2,
+    borderColor: '#C87A44',
   },
   bookButtonText: {
-    color: '#FFFFFF',
+    color: '#C87A44',
     fontSize: 18,
     fontWeight: '700',
     letterSpacing: 1,
@@ -224,5 +241,24 @@ const styles = StyleSheet.create({
   eventsPreview: {
     maxHeight: 150,
     overflow: 'hidden',
+  },
+  dashboardContainer: {
+    gap: 12,
+  },
+  dashboardTile: {
+    backgroundColor: '#C87A44',
+    padding: 20,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  tileText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
   },
 });

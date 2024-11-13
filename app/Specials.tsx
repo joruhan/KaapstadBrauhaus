@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-// Sample data structure
+// data structure and add more below
 const specialsList = [
   {
     id: 1,
